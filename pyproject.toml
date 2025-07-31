@@ -28,10 +28,7 @@ dev = [
 
 [tool.hatch.build]
 dev-mode-dirs = ["src"]
-
-[tool.hatch.build.packages]
-include = ["kjst_growth_course"]
-from = "src"
+packages = ["src/kjst_growth_course"]
 
 [tool.hatch.build.targets.wheel]
 include = [
