@@ -215,7 +215,7 @@ wheels = [
 
 [[package]]
 name = "kjst-growth-course"
-version = "0.1.0"
+version = "0.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "matplotlib" },
@@ -236,9 +236,9 @@ dev = [
 requires-dist = [
     { name = "matplotlib", specifier = ">=3.8.4" },
     { name = "matplotlib-fontja", specifier = ">=1.1.0" },
-    { name = "numpy", specifier = ">=2.2.5" },
-    { name = "pandas", specifier = ">=2.3.0" },
-    { name = "scikit-learn", specifier = ">=1.7.0" },
+    { name = "numpy", specifier = ">=2.0.2" },
+    { name = "pandas", specifier = ">=2.2.3" },
+    { name = "scikit-learn", specifier = ">=1.6.1" },
     { name = "scipy", specifier = ">=1.14.1" },
     { name = "seaborn", specifier = ">=0.13.2" },
 ]
