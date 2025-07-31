@@ -1,6 +1,6 @@
 [project]
 name = "kjst-growth-course"
-version = "0.1.1"
+version = "0.1.2"
 description = "Collection of helper functions for my course"
 readme = "README.md"
 authors = [
