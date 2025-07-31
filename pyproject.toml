@@ -1,0 +1,57 @@
+[project]
+name = "kjst-growth-course"
+version = "0.1.0"
+description = "Collection of helper functions for my course"
+readme = "README.md"
+authors = [
+    { name = "Kenji Sato", email = "mail@kenjisato.jp" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "japanize-matplotlib>=1.1.3",
+    "matplotlib>=3.10.3",
+    "numpy>=2.3.2",
+    "pandas>=2.3.1",
+    "scikit-learn>=1.7.1",
+    "scipy>=1.16.1",
+    "seaborn>=0.13.2",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "fastparquet>=2024.11.0",
+]
+
+[tool.hatch.build]
+dev-mode-dirs = ["src"]
+
+[tool.hatch.build.packages]
+include = ["kjst_growth_course"]
+from = "src"
+
+[tool.hatch.build.targets.wheel]
+include = [
+  { path = "src/kjst_growth_course/data/bin", pattern = "*" },
+]
+
+exclude = [
+  { path = "scripts", pattern = "*" },
+  { path = "src/kjst_growth_course/data/raw", pattern = "*" },
+]
+
+[tool.hatch.build.targets.sdists]
+exclude = [
+  { path = "scripts", pattern = "*" },
+  { path = "src/kjst_growth_course/data/raw", pattern = "*" },
+]
+
+[tool.bumpversion]
+commit = true
+tag = false
+
+[[tool.bumpversion.files]]
+filename = 'src/kjst_growth_course/__about__.py'
