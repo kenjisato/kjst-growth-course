@@ -30,7 +30,7 @@ dev = [
 dev-mode-dirs = ["src"]
 packages = ["src/kjst_growth_course"]
 
-[tool.hatch.build.targets.wheel]
+[tool.hatch.build.targets.wheels]
 include = [
   { path = "src/kjst_growth_course/data/bin", pattern = "*" },
 ]
