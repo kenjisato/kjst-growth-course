@@ -34,6 +34,7 @@ jobs:
       - name: List dist files (optional)
         run: ls -l dist
 
+      # GitHub Release に wheel を添付
       - name: Create/Update GitHub Release and upload wheel
         uses: softprops/action-gh-release@v2
         with:
@@ -42,3 +43,31 @@ jobs:
           draft: false
           prerelease: ${{ contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'rc') }}
           fail_on_unmatched_files: true
+
+      # artifacts ブランチへ「タグ付きパス」で公開（latest は作らない）
+      - name: Prepare files for artifacts branch
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -eux
+          mkdir -p public/releases/"$TAG"
+          cp dist/*.whl public/releases/"$TAG"/
+
+      - name: Publish to artifacts branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: artifacts
+          publish_dir: public
+          keep_files: true  # 過去の v*/ を保持
+
+      - name: Show jsDelivr URLs
+        env:
+          REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          for f in dist/*.whl; do
+            base=$(basename "$f")
+            echo "Versioned URL:"
+            echo "https://cdn.jsdelivr.net/gh/${REPO}@artifacts/releases/${TAG}/${base}"
+          done
